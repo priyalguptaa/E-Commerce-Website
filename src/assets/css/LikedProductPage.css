@@ -1,0 +1,11 @@
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .icon-spinner {
+    font-size: 2rem;
+    color: #007bff; /* Set the color as per your design */
+  }

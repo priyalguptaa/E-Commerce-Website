@@ -24,6 +24,11 @@ import Home from './home/Home.jsx';
 import Blog from './blog/Blog.jsx';
 import Shop from './ShopPage/Shop.jsx';
 import SingleProduct from './ShopPage/SingleProduct.jsx';
+import Page404 from './component/Page404.jsx';
+import CartPage from './ShopPage/CartPage.jsx';
+import LikedProducts from './component/LikedProduct.jsx';
+import LikedProductsPage from './component/LikedProductPage.jsx';
+import SingleBlog from './blog/SingleBlog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -39,17 +44,38 @@ const router = createBrowserRouter([
         element: <Blog />
       },
       {
+        path: "/blog/:id",
+        element: <SingleBlog/>
+      },
+      {
          path:"/shop",
          element:  <Shop/>
       },
       {
         path:"shop/:id",
         element:<SingleProduct/>
+      },
+      {
+        path:"/about",
+        element:<Page404/>
+      },
+      {
+        path:"/cart-page",
+        element:<CartPage/>
+      },
+      {
+        path:"/liked-products",
+        element:<LikedProductsPage/>
+      },
+      {
+        path:"/*",
+        element:<Page404/>
       }
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <RouterProvider router={router}/>
+
 )

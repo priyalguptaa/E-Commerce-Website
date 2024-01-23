@@ -1,0 +1,21 @@
+.container{
+    text-align: center;
+}
+
+.Content404{
+    color: #ff0000;
+    font-size: 3em;
+    /* 1em = 16 pixels */
+    margin-bottom: 10px;
+}
+
+.contentOf404{
+    color: #333;
+    font-size: 1.2em;
+}
+
+.image404{
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
