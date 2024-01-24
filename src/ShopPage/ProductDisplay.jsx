@@ -11,6 +11,7 @@ const ProductDisplay = ({ item }) => {
   const [coupon, setCoupon] = useState("");
   const [size, setSize] = useState("Select Size");
   const [color, setColor] = useState("Select Color");
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleSizeChange = (e) => {
     setSize(e.target.value);
@@ -28,6 +29,13 @@ const ProductDisplay = ({ item }) => {
     setQuantity(prequantity + 1);
   };
 
+  const showAlertMessage = (title, message)=>{
+    setShowAlert({title, message})
+
+    setTimeout(()=>{
+      setShowAlert(false)
+    },3000)
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const product = {
@@ -133,10 +141,10 @@ const ProductDisplay = ({ item }) => {
           </div>
           {/* Button section */}
           <div className="button-section">
-            <button type="submit" className="lab-btn">
+            <button type="submit" className="lab-btn" onClick={()=>showAlertMessage("Cart Item",`${name} added to cart item successfully..!!`)}>
               Add to Cart
             </button>
-
+            
             {/* Apply margin to create space */}
             <Link
               to="/cart-page"
@@ -146,9 +154,28 @@ const ProductDisplay = ({ item }) => {
               <span>Check Out</span>
             </Link>
           </div>
+
         </form>
       </div>
+      {showAlert && (
+        <div className="alert-container">
+          <div className="alert">
+            <div className="alert-header">
+              <h3>{showAlert.title}</h3>
+              <button className="close-btn" onClick={() => setShowAlert(false)}>
+                &times;
+              </button>
+            </div>
+            <div className="alert-body">
+              <p>{showAlert.message}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      
     </div>
+
+   
   );
 };
 

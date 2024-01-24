@@ -1,10 +1,11 @@
 // LikedProducts.jsx
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/LikedProduct.css";
 
-const LikedProducts = ({ likedProducts, onDislike }) => {
+const LikedProducts = ({ likedProducts, onDislike, showAlertMessage}) => {
+
   const productRows = likedProducts.reduce((resultArray, item, index) => {
     const rowIndex = Math.floor(index / 4);
 
@@ -15,6 +16,7 @@ const LikedProducts = ({ likedProducts, onDislike }) => {
     resultArray[rowIndex].push(item);
     return resultArray;
   }, []);
+
 
   return (
     <div>
@@ -35,10 +37,13 @@ const LikedProducts = ({ likedProducts, onDislike }) => {
                       <Link to={`/shop/${product.id}`}>
                         <i className="icofont-eye"></i>
                       </Link>
+
                       <span>Liked</span>
-                      <button onClick={() => onDislike(product)}>
+
+                      <button onClick={() => { onDislike(product); showAlertMessage("Product Disliked", `You have disliked ${product.name}`); }}>
                         <i className="icofont-thumbs-down"></i>
                       </button>
+
                     </div>
                     <div className="product-contentt">
                       <h5>
@@ -53,6 +58,7 @@ const LikedProducts = ({ likedProducts, onDislike }) => {
           </div>
         )}
       </div>
+      
     </div>
   );
 };

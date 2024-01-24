@@ -60,14 +60,14 @@ const Navitems = () => {
                 Create Account
               </Link>
               
-              <span className="d-none d-md-block" style={{ margin: '0 10px' }}></span>
+              {/* <span className="d-none d-md-block" style={{ margin: '0 10px' }}></span> */}
 
               {/* show liked products button */}
               <Link to="/liked-products" className="show-liked-button">
                 <button className="lab-btn me-3 d-none d-md-block">Show Liked Products</button>
               </Link>
                 
-              <span className="d-none d-md-block" style={{ margin: '0 10px' }}></span>
+              {/* <span className="d-none d-md-block" style={{ margin: '0 10px' }}></span> */}
 
               <Link to="/cart-page" className="show-liked-button">
                 <button className="lab-btn me-3 d-none d-md-block">Cart Item</button>

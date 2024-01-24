@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import delImgUrl from "../assets/images/shop/del.png";
 const CartPage = () => {
   const [cartItem, setCartItem] = useState([]);
-
+  const [showAlert, setShowAlert] = useState(false)
   useEffect(() => {
     //fetch cart data from the local storage
     // if the data is present so it will insert in the cart and that not yet so it would bw empty
@@ -45,6 +45,8 @@ const CartPage = () => {
 
     setCartItem(updatedCart);
     updateLocalStorage(updatedCart);
+
+    showAlertMessage("Deleted Item", `${itemToRemove.name} cart item deleted successfuly..!!`);
   };
 
   const updateLocalStorage = (updatedCart) => {
@@ -55,6 +57,14 @@ const CartPage = () => {
   const cartSubTotal = cartItem.reduce((total, item) => {
     return total + calculateTotalPrice(item);
   }, 0);
+
+  const showAlertMessage = (title, message)=>{
+     setShowAlert({title, message})
+
+     setTimeout(()=>{
+       setShowAlert(false)
+     }, 3000)
+  }
 
   //   order total
   const orderTotal = cartSubTotal;
@@ -122,7 +132,7 @@ const CartPage = () => {
                       <td className="cat-edit">
                         <button
                           type="button"
-                          onClick={() => handleRemoveItem(item)}
+                          onClick={() => handleRemoveItem(item) }
                         >
                           <img src={delImgUrl} alt="" />
                         </button>
@@ -137,6 +147,23 @@ const CartPage = () => {
           </div>
         </div>
       </div>
+
+      {showAlert && (
+        <div className="alert-container">
+          <div className="alert">
+            <div className="alert-header">
+              <h3>{showAlert.title}</h3>
+              <button className="close-btn" onClick={() => setShowAlert(false)}>
+                &times;
+              </button>
+            </div>
+            <div className="alert-body">
+              <p>{showAlert.message}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
